@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="bn">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#6b1027">
+  <meta name="description" content="রঙচরণ ব্যবসা পরিচালনা ব্যবস্থা">
+  <title>রঙচরণ | Business Manager</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <section id="loginView" class="login-wrap">
+    <div class="login-card">
+      <img class="login-banner" src="banner.jpg" alt="রঙচরণ ব্যানার">
+      <img class="login-logo" src="logo.jpg" alt="রঙচরণ লোগো">
+      <div class="login-title">রঙচরণ ব্যবসা পরিচালনা</div>
+      <p class="muted">আপনার অ্যাকাউন্টে প্রবেশ করুন</p>
+      <form id="loginForm">
+        <label for="userId">ইউজার আইডি</label>
+        <input id="userId" autocomplete="username" placeholder="আপনার User ID" required>
+        <label for="password">পাসওয়ার্ড</label>
+        <input id="password" type="password" autocomplete="current-password" placeholder="পাসওয়ার্ড" required>
+        <button class="btn primary full" type="submit">লগইন করুন</button>
+      </form>
+      <p id="loginMessage" class="message" aria-live="polite"></p>
+      <p class="tiny muted">প্রথমবার ব্যবহারের আগে Google Apps Script Backend সেটআপ করতে হবে।</p>
+    </div>
+  </section>
+
+  <div id="appView" class="app hidden">
+    <header class="topbar">
+      <button id="menuBtn" class="icon-btn" aria-label="মেনু">☰</button>
+      <div class="brand"><img src="logo.jpg" alt=""><div><b>রঙচরণ</b><small>ব্যবসা পরিচালনা</small></div></div>
+      <div class="top-actions"><span id="currentUser" class="user-pill"></span><button id="logoutBtn" class="btn outline small">লগআউট</button></div>
+    </header>
+    <div class="layout">
+      <aside id="sidebar" class="sidebar">
+        <div class="side-label">মূল মেনু</div>
+        <button class="nav active" data-page="dashboard">▦ <span>ড্যাশবোর্ড</span></button>
+        <button class="nav" data-page="orders">▤ <span>অর্ডার</span></button>
+        <button class="nav" data-page="products">◇ <span>পণ্য ও স্টক</span></button>
+        <button class="nav" data-page="combos">✿ <span>কম্বো বিল্ডার</span></button>
+        <button class="nav" data-page="customers">♙ <span>কাস্টমার</span></button>
+        <button class="nav" data-page="delivery">➜ <span>ডেলিভারি</span></button>
+        <button class="nav" data-page="expenses">৳ <span>খরচ</span></button>
+        <button class="nav" data-page="reports">▥ <span>রিপোর্ট</span></button>
+        <button class="nav" data-page="users">♧ <span>ইউজার ম্যানেজমেন্ট</span></button>
+        <button class="nav" data-page="settings">⚙ <span>সেটিংস</span></button>
+        <div class="side-note">রঙচরণ • Be Yourself... Always ♡</div>
+      </aside>
+      <main class="content">
+        <div id="pageHeading" class="page-heading"><div><h1>ড্যাশবোর্ড</h1><p>আপনার ব্যবসার আজকের সারসংক্ষেপ</p></div><span class="date-chip" id="todayLabel"></span></div>
+        <section id="pageContent"></section>
+      </main>
+    </div>
+    <nav class="bottom-nav">
+      <button data-page="dashboard" class="active">▦<small>হোম</small></button>
+      <button data-page="orders">▤<small>অর্ডার</small></button>
+      <button data-page="products">◇<small>স্টক</small></button>
+      <button data-page="customers">♙<small>কাস্টমার</small></button>
+      <button data-page="reports">▥<small>রিপোর্ট</small></button>
+    </nav>
+  </div>
+  <div id="toast" class="toast" role="status"></div>
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+  <script>
+    if ("serviceWorker" in navigator) window.addEventListener("load", () => navigator.serviceWorker.register("./sw.js").catch(()=>{}));
+  </script>
+</body>
+</html>
